@@ -58,8 +58,11 @@ text - текст который он будет отображать <br>
 .type - всегда "text" <br>
 .setProps(..props) <br>
  тоже самое что и с sprite <br>
-
+17. .destroyObject(dUid) => true||false (Boolean) <br>
+Уничтожает объект по dUid,и обновляет массив .objects.<br>
+Возвращает true,если удалено и false, если нет.<br>
 ## Пример кода
  <br>
 Посмотреть можно в файле [game.js](game.js) <br>
+
 
