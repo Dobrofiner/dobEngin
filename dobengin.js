@@ -50,7 +50,7 @@ class dobEngin {
             constructor(properties,engine) {
                 this.getSprite = (spr) => {
                     if(typeof(spr) == "string"){
-                        return engin.assetsForUse[spr]
+                        return engine.assetsForUse[spr]
                             } else{
                              return spr }
                 }
@@ -63,7 +63,7 @@ class dobEngin {
                 this.type="sprite";
                 this.dUid = 0;
                 this.setProps = (properties) =>{
-                    for (let i;i<this.props.length;i++){
+                    for (let i=0;i<this.props.length;i++){
                         if (newProps[i] !== undefined) {  
                             this.props[Object.keys(this.props)[i]] = properties[i];  
                 }
@@ -82,7 +82,7 @@ class dobEngin {
             this.type = "text";
             this.dUid = 0;
             this.setProps = (properties) =>{
-                        for (let i;i<this.props.length;i++){
+                        for (let i=0;i<this.props.length;i++){
                             if (newProps[i] !== undefined) {  
                                 this.props[Object.keys(this.props)[i]] = properties[i];  
                     }
@@ -112,7 +112,21 @@ class dobEngin {
             }
           /*   this.objects[id].dUid = this.dUid(); */
         }
-        this.destroyObject = () => {}
+        this.destroyObject = (dUid) => {
+            let found = false;
+            this.objects.forEach(el=>{
+                if (el.dUid == dUid){
+                    delete this.objects[this.objects.indexOf(el)];
+                    found = true;
+                }
+            })
+            let newObjects = [];
+            this.objects.forEach(el=>{
+                if(typeof(el)!="undefined") newObjects.push(el);
+            });
+            this.objects = newObjects;
+            return found == 0 ? false : true;
+        }
         this.downloadString = (string,mime,name) => {
             const a = document.createElement("a");
             a.href = "data:" + (mime||"text/plain") + "," + string;
