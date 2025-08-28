@@ -1,5 +1,5 @@
 /**
- * dobEngin v0.5.0<br>
+ * dobEngin v0.5.0.1<br>
  * 
  * License:MIT
  * 
@@ -77,7 +77,6 @@ class dobEngin {
             this.canvas = document.createElement("canvas");
             this.canvas.height = this.height;
             this.canvas.width = this.width;
-            this.drw = this.canvas.getContext("2d");
             document.body.append(this.gameDiv);
             document.body.style.backgroundColor=this.config.bodyColor
             document.body.style.display=this.config.bodyDisplay
@@ -88,13 +87,14 @@ class dobEngin {
                         this.canvas.style.width=this.config.physicalCanvasWidth;
             this.canvas.style.height=this.config.physicalCanvasHeight
             this.canvas.style.backgroundColor=this.config.canvasColor
-            this.isStarted = true;}
-            else{
+            this.isStarted = true;
+        }else{
                 this.canvas = document.getElementById(canvasId);
                 this.width = this.canvas.width; 
                 this.height = this.canvas.height;
                 // this.drw = this.canvas.getContext("2d");
             }
+            this.drw = this.canvas.getContext("2d");
             const rect = this.canvas.getBoundingClientRect()
             this.canvas.addEventListener("mousemove",(event)=>{
                 [this.mouse.realX,this.mouse.realY]=[event.clientX-rect.left,event.clientY-rect.top];    
